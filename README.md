@@ -1,8 +1,12 @@
 # Custom-Linux-Waybar — Nuclear Reactor HUD
 
+<p align="center">
+  <img src="waybar-preview.webp" alt="Green Nuclear Reactor Waybar preview" width="100%">
+</p>
+
 Portable dotfiles for the green nuclear-reactor Waybar setup.
 
-This package contains the **Waybar setup only**. 
+This package contains the **Waybar setup only**.
 
 ## Install
 
@@ -67,6 +71,7 @@ If the second machine has no NVIDIA GPU, the GPU script falls back to an `edge` 
 install.sh
 uninstall.sh
 README.md
+waybar-preview.webp
 ```
 
 ## Uninstall
