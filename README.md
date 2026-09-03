@@ -4,6 +4,19 @@
   <img src="waybar-preview.webp" alt="Green Nuclear Reactor Waybar preview" width="100%">
 </p>
 
+## Features
+
+- ☢️ Nuclear reactor status indicator
+- 🌡️ CPU & GPU temperatures
+- 01–05 workspaces with clean indicators
+- 🧰 System tray
+- 🕒 Clock
+- ⏻ Power menu
+- 🌐 Network status
+- 🎙️ Microphone status
+- 🔗 VPN status
+- 🔊 Volume with percentage indicator
+
 Portable dotfiles for the green nuclear-reactor Waybar setup.
 
 This package contains the **Waybar setup only**.
