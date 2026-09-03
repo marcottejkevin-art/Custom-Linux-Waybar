@@ -2,7 +2,7 @@
 
 Portable dotfiles for the green nuclear-reactor Waybar setup.
 
-This package contains the **Waybar setup only**. EWW and its scripts are intentionally excluded.
+This package contains the **Waybar setup only**. 
 
 ## Install
 
