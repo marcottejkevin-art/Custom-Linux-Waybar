@@ -1,0 +1,599 @@
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    font-weight: bold;
+}
+
+window#waybar {
+    background: rgba(1, 7, 2, 0.96);
+    color: #7dff8a;
+
+    border: 1px solid #39ff58;
+    border-radius: 3px;
+
+    box-shadow:
+        0 0 8px rgba(40, 255, 70, 0.35),
+        0 0 20px rgba(40, 255, 70, 0.10);
+}
+
+/* ─────────────── GENERAL MODULES ─────────────── */
+
+#clock,
+#custom-power,
+#network,
+#bluetooth,
+#custom-mic,
+#custom-vpn,
+#custom-cpu-temp,
+#custom-reactor,
+#custom-gpu-temp,
+#memory,
+#pulseaudio,
+#backlight {
+
+    margin: 4px 2px;
+    padding: 5px 12px;
+
+    background: rgba(2, 18, 5, 0.96);
+
+    border: 1px solid #176d28;
+    border-radius: 2px;
+
+    box-shadow:
+        inset 0 0 5px rgba(50, 255, 70, 0.05);
+
+    transition:
+        color 150ms ease,
+        background 150ms ease,
+        border-color 150ms ease,
+        box-shadow 150ms ease;
+}
+
+/* ─────────────── LEFT SIDE ─────────────── */
+
+#clock {
+    color: #c2ffc9;
+    border-color: #319b42;
+}
+
+#custom-power {
+    color: #ffd36a;
+}
+
+#network {
+    color: #73ff91;
+}
+
+#bluetooth {
+    color: #72ffd4;
+}
+
+#custom-mic {
+    color: #ff8d8d;
+}
+
+#custom-vpn {
+    color: #9aff78;
+}
+
+/* ─────────────── CPU ─────────────── */
+
+#custom-cpu-temp {
+    margin-left: 8px;
+
+    color: #a6ff7c;
+    border-color: #2fa344;
+
+    box-shadow:
+        0 0 7px rgba(50, 255, 70, 0.12),
+        inset 0 0 5px rgba(50, 255, 70, 0.05);
+}
+
+/* ─────────────── REACTOR CORE ─────────────── */
+
+#custom-reactor {
+    margin-left: 4px;
+    margin-right: 4px;
+
+    padding-left: 28px;
+    padding-right: 28px;
+
+    background: rgba(5, 35, 10, 0.98);
+
+    border: 1px solid #45ff5f;
+    border-radius: 2px;
+
+    letter-spacing: 2px;
+    font-size: 13px;
+
+    box-shadow:
+        0 0 8px rgba(50, 255, 70, 0.30),
+        0 0 18px rgba(50, 255, 70, 0.12),
+        inset 0 0 10px rgba(50, 255, 70, 0.08);
+}
+
+/* NORMAL */
+
+#custom-reactor.online {
+    color: #c8ffd0;
+
+    border-color: #45ff5f;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(4, 30, 8, 0.98),
+            rgba(8, 50, 13, 0.98),
+            rgba(4, 30, 8, 0.98)
+        );
+
+    box-shadow:
+        0 0 8px rgba(50, 255, 70, 0.35),
+        0 0 20px rgba(50, 255, 70, 0.12),
+        inset 0 0 12px rgba(50, 255, 70, 0.08);
+}
+
+/* WARNING */
+
+#custom-reactor.warning {
+    color: #fff27a;
+
+    border-color: #d7c82e;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(35, 30, 4, 0.98),
+            rgba(55, 48, 5, 0.98),
+            rgba(35, 30, 4, 0.98)
+        );
+
+    box-shadow:
+        0 0 10px rgba(255, 220, 40, 0.35),
+        0 0 22px rgba(255, 220, 40, 0.12);
+}
+
+/* CRITICAL */
+
+#custom-reactor.critical {
+    color: #ff6666;
+
+    border-color: #ff3030;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(45, 3, 3, 0.98),
+            rgba(65, 5, 5, 0.98),
+            rgba(45, 3, 3, 0.98)
+        );
+
+    box-shadow:
+        0 0 10px rgba(255, 30, 30, 0.45),
+        0 0 25px rgba(255, 30, 30, 0.18);
+}
+
+/* TEMPERATURE DATA UNAVAILABLE */
+
+#custom-reactor.check {
+    color: #c0c0c0;
+
+    border-color: #777777;
+
+    background: rgba(20, 20, 20, 0.98);
+
+    box-shadow:
+        0 0 8px rgba(180, 180, 180, 0.15);
+}
+
+/* ─────────────── GPU ─────────────── */
+
+#custom-gpu-temp {
+    margin-right: 8px;
+    color: #a6ff7c;
+    border: 2px solid #2fa344;
+    border-radius: 0px;
+
+    box-shadow:
+        0 0 7px rgba(50, 255, 70, 0.12),
+        inset 0 0 5px rgba(50, 255, 70, 0.05);
+}
+
+/* ─────────────── BRIGHTNESS ─────────────── */
+
+#backlight {
+    color: #c5ff7a;
+}
+
+/* ─────────────── HOVER ─────────────── */
+
+#clock:hover,
+#custom-power:hover,
+#network:hover,
+#bluetooth:hover,
+#custom-mic:hover,
+#custom-vpn:hover,
+#custom-cpu-temp:hover,
+#custom-gpu-temp:hover,
+#pulseaudio:hover,
+#backlight:hover {
+
+    color: #d8ffdd;
+
+    background: rgba(8, 35, 11, 0.98);
+
+    border-color: #42ff5b;
+
+    box-shadow:
+        0 0 8px rgba(50, 255, 70, 0.22);
+}
+
+#custom-reactor:hover {
+
+    color: #ffffff;
+
+    background: rgba(10, 55, 15, 0.98);
+
+    border-color: #7aff89;
+
+    box-shadow:
+        0 0 10px rgba(50, 255, 70, 0.45),
+        0 0 22px rgba(50, 255, 70, 0.18),
+        inset 0 0 12px rgba(50, 255, 70, 0.12);
+}
+
+/* ─────────────── TOOLTIP ─────────────── */
+
+tooltip {
+    background: rgba(1, 10, 3, 0.98);
+    color: #9dffa7;
+
+    border: 1px solid #35ff50;
+    border-radius: 2px;
+
+    box-shadow:
+        0 0 10px rgba(40, 255, 60, 0.20);
+}
+
+/* ─────────────── TEMPERATURE STATES ─────────────── */
+
+#custom-cpu-temp.warning,
+#custom-gpu-temp.warning {
+    color: #fff27a;
+    border-color: #b5a52a;
+}
+
+#custom-cpu-temp.critical,
+#custom-gpu-temp.critical {
+    color: #ff5555;
+    border-color: #ff3030;
+
+    box-shadow:
+        0 0 10px rgba(255, 30, 30, 0.35);
+}
+
+/* ═══════════════════════════════════════
+   REACTOR TEMPERATURE SYSTEM
+   ═══════════════════════════════════════ */
+
+/* NORMAL */
+
+#custom-cpu-temp.normal,
+#custom-gpu-temp.normal {
+    color: #9dff7a;
+    border-color: #238f35;
+}
+
+/* WARNING */
+
+#custom-cpu-temp.warning,
+#custom-gpu-temp.warning {
+    color: #fff06a;
+    border-color: #d1bd24;
+
+    background: rgba(35, 30, 4, 0.98);
+
+    box-shadow:
+        0 0 8px rgba(255, 220, 40, 0.22);
+}
+
+/* CRITICAL */
+
+#custom-cpu-temp.critical,
+#custom-gpu-temp.critical {
+    color: #ff5555;
+    border-color: #ff3030;
+
+    background: rgba(45, 3, 3, 0.98);
+
+    box-shadow:
+        0 0 10px rgba(255, 30, 30, 0.35);
+}
+
+/* UNKNOWN */
+
+#custom-cpu-temp.unknown,
+#custom-gpu-temp.unknown {
+    color: #999999;
+    border-color: #555555;
+}
+
+/* ═══════════════════════════════════════
+   REACTOR CRITICAL PULSE
+   ═══════════════════════════════════════ */
+
+@keyframes reactor-critical {
+    0% {
+        background: rgba(45, 3, 3, 0.98);
+        box-shadow:
+            0 0 8px rgba(255, 30, 30, 0.35);
+    }
+
+    50% {
+        background: rgba(100, 5, 5, 0.98);
+        box-shadow:
+            0 0 18px rgba(255, 30, 30, 0.75),
+            0 0 35px rgba(255, 30, 30, 0.25);
+    }
+
+    100% {
+        background: rgba(45, 3, 3, 0.98);
+        box-shadow:
+            0 0 8px rgba(255, 30, 30, 0.35);
+    }
+}
+
+#custom-reactor.critical {
+    color: #ff6666;
+    border-color: #ff3030;
+
+    animation: reactor-critical 1s infinite;
+}
+
+/* WARNING reactor */
+
+#custom-reactor.warning {
+    color: #fff27a;
+    border-color: #d1bd24;
+
+    background: rgba(40, 34, 4, 0.98);
+
+    box-shadow:
+        0 0 10px rgba(255, 220, 40, 0.30);
+}
+
+/* ONLINE reactor */
+
+#custom-reactor.online {
+    color: #c8ffd0;
+    border-color: #45ff5f;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(4, 30, 8, 0.98),
+            rgba(8, 50, 13, 0.98),
+            rgba(4, 30, 8, 0.98)
+        );
+
+    box-shadow:
+        0 0 8px rgba(50, 255, 70, 0.35),
+        0 0 20px rgba(50, 255, 70, 0.12);
+}
+
+
+/* ═══════════════════════════════════════
+   REACTOR COMMUNICATIONS
+   ═══════════════════════════════════════ */
+
+#network,
+#bluetooth,
+#custom-mic,
+#custom-vpn {
+    margin: 4px 2px;
+    padding: 5px 12px;
+
+    background: rgba(2, 18, 5, 0.96);
+    border: 1px solid #176d28;
+    border-radius: 2px;
+
+    color: #8cff9a;
+
+    box-shadow:
+        inset 0 0 8px rgba(50, 255, 70, 0.05);
+}
+
+/* NETWORK */
+
+#network:hover {
+    color: #d5ffda;
+    border-color: #45ff5f;
+
+    box-shadow:
+        0 0 8px rgba(50, 255, 70, 0.25);
+}
+
+/* BLUETOOTH */
+
+#bluetooth.connected {
+    color: #c8ffd0;
+    border-color: #45ff5f;
+}
+
+#bluetooth.disabled,
+#bluetooth.off {
+    color: #4b754f;
+    border-color: #174a20;
+}
+
+/* MICROPHONE ACTIVE */
+
+#custom-mic.active {
+    color: #9dff7a;
+    border-color: #238f35;
+}
+
+/* MICROPHONE MUTED */
+
+#custom-mic.muted {
+    color: #ff6666;
+    border-color: #a51f1f;
+
+    background: rgba(40, 4, 4, 0.96);
+}
+
+/* VPN CONNECTED */
+
+#custom-vpn.online {
+    color: #9dff7a;
+    border-color: #45ff5f;
+
+    box-shadow:
+        0 0 7px rgba(50, 255, 70, 0.22);
+}
+
+/* VPN OFF */
+
+#custom-vpn.offline {
+    color: #557c5b;
+    border-color: #174a20;
+}
+
+#custom-power {
+    margin: 4px 2px;
+
+    padding: 2px 10px;
+
+    color: #9dff7a;
+
+    background: rgba(3, 24, 7, 0.96);
+
+    border: 1px solid #176d28;
+    border-radius: 2px;
+
+    box-shadow:
+        inset 0 0 8px rgba(50, 255, 70, 0.05);
+}
+
+#custom-power:hover {
+    color: #ffffff;
+
+    border-color: #45ff5f;
+
+    background: rgba(8, 55, 14, 0.98);
+
+    box-shadow:
+        0 0 10px rgba(50, 255, 70, 0.35);
+}
+
+/* ===== Custom Workspace Buttons ===== */
+
+#custom-ws1,
+#custom-ws2,
+#custom-ws3,
+#custom-ws4,
+#custom-ws5 {
+    padding: 0 16px;
+    margin: 0;
+    min-width: 28px;
+    border: 2px solid #00ff00;
+    background: rgba(0, 0, 0, 0.25);
+    color: #00ff00;
+}
+
+/* ===== COMPACT REACTOR WORKSPACES ===== */
+
+#custom-ws1,
+#custom-ws2,
+#custom-ws3,
+#custom-ws4,
+#custom-ws5 {
+    color: #39ff14;
+    background: rgba(20, 255, 0, 0.08);
+    border: 2px solid #39ff14;
+    border-radius: 4px;
+
+    min-width: 38px;
+    padding: 2px 8px;
+    margin: 0 2px;
+
+    font-weight: bold;
+}
+
+/* Reactor hover effect */
+#custom-ws1:hover,
+#custom-ws2:hover,
+#custom-ws3:hover,
+#custom-ws4:hover,
+#custom-ws5:hover {
+    background: rgba(57, 255, 20, 0.22);
+    color: #ffffff;
+}
+
+/* Small reactor-style separation before clock */
+#clock {
+    margin-left: 8px;
+}
+
+#custom-reactor-icon {
+    font-size: 36px;
+    color: #c8ffde;
+    padding-left: 4px;
+    padding-right: 4px;
+    min-width: 36px;
+}
+
+#custom-reactor {
+    font-size: 13px;
+}
+
+#pulseaudio {
+    font-size: 13px;
+    color: #39ff14;
+
+    padding: 2px 6px;
+    margin: 2px 4px;
+
+    border: 2px solid #39ff14;
+    border-radius: 6px;
+
+    background: rgba(0, 20, 0, 0.75);
+
+    box-shadow:
+        0 0 6px rgba(57, 255, 20, 0.5),
+        inset 0 0 6px rgba(57, 255, 20, 0.15);
+}
+
+#pulseaudio span {
+    color: #39ff14;
+}
+
+#pulseaudio:hover {
+    color: #ffffff;
+    background: rgba(8, 35, 11, 0.95);
+    border-color: #42ff5b;
+    box-shadow: 0 0 8px rgba(50, 255, 70, 0.55);
+}
+
+#custom-tailscale {
+    color: #c2ffc9;
+    border: 2px solid #319b42;
+    padding: 0 14px;
+    margin: 0 4px;
+}
+
+#custom-tailscale.on {
+    color: #c2ffc9;
+}
+
+#custom-tailscale.off {
+    color: #ff6b6b;
+}
+
+#custom-vpn {
+    font-size: 16px;
+}
+
+#custom-vpn {
+    padding: 0 12px;
+}
