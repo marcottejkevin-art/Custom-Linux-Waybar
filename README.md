@@ -7,13 +7,14 @@ This package contains the **Waybar setup only**. EWW and its scripts are intenti
 ## Install
 
 ```bash
+git clone https://github.com/marcottejkevin-art/Custom-Linux-Waybar.git
 cd Custom-Linux-Waybar
-./install.sh
+bash install.sh
 pkill waybar 2>/dev/null || true
 waybar >/tmp/waybar.log 2>&1 &
 ```
 
-The installer backs up an existing `~/.config/waybar` before replacing it.
+The installer backs up an existing `~/.config/waybar` before replacing it and marks the installed helper scripts executable.
 
 ## Recommended Arch packages
 
@@ -66,6 +67,12 @@ If the second machine has no NVIDIA GPU, the GPU script falls back to an `edge` 
 install.sh
 uninstall.sh
 README.md
+```
+
+## Uninstall
+
+```bash
+bash uninstall.sh
 ```
 
 ## GitHub
