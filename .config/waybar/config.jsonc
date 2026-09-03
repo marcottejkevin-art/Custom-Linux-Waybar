@@ -1,0 +1,155 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 42,
+  "margin-top": 6,
+  "margin-left": 8,
+  "margin-right": 8,
+
+  "modules-left": [
+    "custom/ws1",
+    "custom/ws2",
+    "custom/ws3",
+    "custom/ws4",
+    "custom/ws5",
+    "clock",
+    "custom/power",
+    "network",
+    "bluetooth",
+    "custom/mic",
+    "custom/vpn"
+  ],
+
+  "modules-center": [
+    "custom/cpu-temp",
+    "custom/reactor",
+    "custom/gpu-temp"
+  ],
+
+  "modules-right": [
+    "pulseaudio",
+    "backlight"
+  ],
+
+  "custom/ws1": {
+    "format": "01",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'",
+    "tooltip": false
+  },
+  "custom/ws2": {
+    "format": "02",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'",
+    "tooltip": false
+  },
+  "custom/ws3": {
+    "format": "03",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'",
+    "tooltip": false
+  },
+  "custom/ws4": {
+    "format": "04",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'",
+    "tooltip": false
+  },
+  "custom/ws5": {
+    "format": "05",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 5 })'",
+    "tooltip": false
+  },
+
+  "clock": {
+    "format": "[ ◷  {:%H:%M} ]",
+    "tooltip-format": "{:%A %d %B %Y}"
+  },
+
+  "custom/power": {
+    "format": "[ ⏻ ]",
+    "tooltip": "Power",
+    "on-click": "wlogout"
+  },
+
+  "network": {
+    "format-wifi": "[ 󰤨  {signalStrength}% ]",
+    "format-ethernet": "[ 󰈀 LAN ]",
+    "format-disconnected": "[ 󰤭 OFFLINE ]",
+    "tooltip-format": "{essid}\nSignal: {signalStrength}%",
+    "on-click": "nm-connection-editor"
+  },
+
+  "bluetooth": {
+    "format": "󰂯 {status}",
+    "format-disabled": "󰂲 OFF",
+    "format-off": "󰂲 OFF",
+    "format-on": "󰂯 ON",
+    "format-connected": "󰂯 {device_alias}",
+    "tooltip-format": "Bluetooth: {status}",
+    "on-click": "blueman-manager"
+  },
+
+  "custom/mic": {
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/mic.sh",
+    "interval": 2,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+  },
+
+  "custom/vpn": {
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/vpn.sh",
+    "interval": 3,
+    "on-click": "~/.config/waybar/tailscale-toggle.sh",
+    "markup": "pango",
+    "tooltip": false
+  },
+
+  "custom/cpu-temp": {
+    "return-type": "json",
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/cpu-status.sh",
+    "interval": 2
+  },
+
+  "custom/reactor": {
+    "return-type": "json",
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/reactor.sh",
+    "interval": 2,
+    "markup": true
+  },
+
+  "custom/gpu-temp": {
+    "return-type": "json",
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/gpu-status.sh",
+    "interval": 2
+  },
+
+  "pulseaudio": {
+    "markup": true,
+    "format": "<span size=\"18000\">☢</span> {icon} {volume}%",
+    "format-muted": "<span size=\"18000\">☢</span> {icon} MUTED",
+    "format-icons": [
+      "░░░░░░░░░░",
+      "█░░░░░░░░░",
+      "██░░░░░░░░",
+      "███░░░░░░░",
+      "████░░░░░░",
+      "█████░░░░░",
+      "██████░░░░",
+      "███████░░░",
+      "████████░░",
+      "█████████░",
+      "██████████"
+    ],
+    "on-click": "pavucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+  },
+
+  "backlight": {
+    "format": "[ 󰃠 {percent}% ]",
+    "on-scroll-up": "brightnessctl set +5%",
+    "on-scroll-down": "brightnessctl set 5%-"
+  }
+}
