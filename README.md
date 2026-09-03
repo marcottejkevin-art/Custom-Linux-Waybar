@@ -2,12 +2,6 @@
 
 Portable dotfiles for the green nuclear-reactor Waybar setup.
 
-<p align="center">
-  <img src="assets/waybar-preview.svg" alt="Green Nuclear Reactor Waybar preview" width="100%">
-</p>
-
-> **Waybar preview:** the green nuclear-reactor HUD shown above.
-
 This package contains the **Waybar setup only**. 
 
 ## Install
@@ -70,7 +64,6 @@ If the second machine has no NVIDIA GPU, the GPU script falls back to an `edge` 
 └── vpn.sh
 .config/waybar/tailscale.sh
 .config/waybar/tailscale-toggle.sh
-assets/waybar-preview.svg
 install.sh
 uninstall.sh
 README.md
