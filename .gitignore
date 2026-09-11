@@ -1,3 +1,7 @@
 *.log
 *.swp
 .DS_Store
+
+# Local machine state / generated files
+*.backup-*
+waybar.log
