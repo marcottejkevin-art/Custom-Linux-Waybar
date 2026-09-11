@@ -1,25 +1,31 @@
-# Custom-Linux-Waybar — Nuclear Reactor HUD
+# Custom-Linux-Waybar — Nuclear Reactor Dotfiles
 
 <p align="center">
   <img src="waybar-preview.webp" alt="Green Nuclear Reactor Waybar preview" width="100%">
 </p>
 
+A complete **CachyOS / Arch Linux + Hyprland nuclear-reactor rice** built around the original Waybar setup.
+
+The repository is organized as a real dotfiles collection: each application owns its configuration under `dotfiles/`, while the installer links everything into `~/.config` without hard-coding the repository location.
+
+The organization is inspired by the component-based layout of [`pewdiepie-archdaemon/dionysus`](https://github.com/pewdiepie-archdaemon/dionysus), while the configuration, scripts, palette, and reactor theme here are its own implementation.
+
 ## Features
 
 - ☢️ Nuclear reactor status indicator
-- 🌡️ CPU & GPU temperatures
-- 01–05 workspaces with clean indicators
-- 🧰 System tray
-- 🕒 Clock
-- ⏻ Power menu
-- 🌐 Network status
-- 🎙️ Microphone status
-- 🔗 VPN status
-- 🔊 Volume with percentage indicator
-
-Portable dotfiles for the green nuclear-reactor Waybar setup.
-
-This package contains the **Waybar setup only**.
+- 🌡️ CPU & GPU temperature telemetry
+- 01–05 fixed Hyprland workspaces
+- 🕒 Clock, network, Bluetooth, microphone, VPN, volume, and brightness
+- 🟢 Nuclear-green Waybar styling with warning/critical thermal states
+- 🚀 Nuclear Rofi launcher as its own dotfile
+- 🖥️ Hyprland, Hyprlock, and Hypridle configuration
+- 🐈 Kitty terminal theme
+- 📊 Fastfetch system information
+- 📈 btop with a matching nuclear theme
+- ⏻ wlogout power menu
+- 📦 Arch package manifests
+- 🔗 Symlink-based installation with automatic backups
+- 🔄 Update and uninstall helpers
 
 ## Install
 
@@ -27,212 +33,144 @@ This package contains the **Waybar setup only**.
 git clone https://github.com/marcottejkevin-art/Custom-Linux-Waybar.git
 cd Custom-Linux-Waybar
 bash install.sh
+```
+
+The installer creates symlinks into `~/.config` and backs up existing files before replacing them. Your original configuration is not deleted by the installer.
+
+After installation, restart Waybar:
+
+```bash
 pkill waybar 2>/dev/null || true
 waybar >/tmp/waybar.log 2>&1 &
 ```
 
-The installer backs up an existing `~/.config/waybar` before replacing it and marks the installed helper scripts executable.
+For a complete Arch/CachyOS setup, review `packages/pacman.txt` first. Install optional packages from `packages/aur.txt` separately if you want them.
 
-## Recommended Arch packages
+## Recommended packages
 
 ```bash
-sudo pacman -S waybar jq lm_sensors networkmanager network-manager-applet bluez bluez-utils blueman pavucontrol brightnessctl wlogout
+sudo pacman -S --needed - < packages/pacman.txt
 ```
 
-Optional for the VPN module:
+Optional VPN support:
 
 ```bash
 sudo pacman -S tailscale
 ```
 
-## Dependencies used by the config
-
-- Waybar
-- Hyprland / `hyprctl` for workspace clicks
-- `jq` for JSON custom modules
-- `lm_sensors` / `sensors` for CPU temperatures
-- `nvidia-utils` / `nvidia-smi` when using an NVIDIA GPU
-- `wpctl` (WirePlumber) for microphone/audio controls
-- NetworkManager / `nmcli` for network and fallback VPN status
-- Tailscale for the preferred VPN toggle
-- `pavucontrol` for the audio click action
-- `brightnessctl` for brightness scrolling
-- `blueman-manager` for Bluetooth
-- `wlogout` for the power button
-- JetBrainsMono Nerd Font for the intended appearance
-
-## Portability
-
-The temperature scripts do not hard-code the Ryzen 7 9800X3D or RTX 5080. They use `sensors` and `nvidia-smi`, so they should adapt to another compatible machine.
-
-If the second machine has no NVIDIA GPU, the GPU script falls back to an `edge` sensor when one is available.
-
-## Files
+## Dotfiles
 
 ```text
-.config/waybar/config.jsonc
-.config/waybar/style.css
-.config/waybar/scripts/
-├── cpu-status.sh
-├── gpu-status.sh
-├── mic.sh
-├── reactor.sh
-├── temps.sh
-└── vpn.sh
-.config/waybar/tailscale.sh
-.config/waybar/tailscale-toggle.sh
-install.sh
-uninstall.sh
-README.md
-waybar-preview.webp
+dotfiles/
+├── btop/
+│   ├── btop.conf
+│   └── themes/
+│       └── nuclear.theme
+├── fastfetch/
+│   └── config.jsonc
+├── hypr/
+│   ├── hyprland.conf
+│   ├── hypridle.conf
+│   └── hyprlock.conf
+├── kitty/
+│   └── kitty.conf
+├── rofi/
+│   └── nuclear.rasi
+├── waybar/
+│   ├── config.jsonc
+│   ├── style.css
+│   ├── tailscale.sh
+│   ├── tailscale-toggle.sh
+│   └── scripts/
+│       ├── cpu-status.sh
+│       ├── gpu-status.sh
+│       ├── mic.sh
+│       ├── reactor.sh
+│       ├── temps.sh
+│       └── vpn.sh
+└── wlogout/
+    ├── layout
+    └── style.css
 ```
 
-## Nuclear Rofi Theme
+## Repository layout
 
-The Waybar theme is designed to pair with a matching **nuclear-green Rofi launcher**: black/dark background, radioactive green text, thin green borders, and a subtle green glow.
+```text
+Custom-Linux-Waybar/
+├── dotfiles/             # Actual application configurations
+├── packages/             # Arch package manifests
+├── scripts/              # Install / update / uninstall helpers
+├── theme/                # Shared visual design documentation
+├── screenshots/          # Future showcase assets
+├── wallpapers/           # Future wallpaper collection
+├── install.sh            # Main installer entry point
+├── uninstall.sh          # Main uninstall entry point
+├── README.md
+└── waybar-preview.webp
+```
 
-### 1. Install Rofi
+## Nuclear theme
 
-On CachyOS / Arch:
+The visual language is intentionally consistent across the desktop:
+
+- `#39FF14` — radioactive green primary accent
+- `#B6FF9C` — readable green foreground
+- `#071407` — dark green panels
+- `#030A03` — near-black reactor background
+- `#FFF27A` — warning state
+- `#FF3030` — critical state
+- JetBrainsMono Nerd Font — primary typography
+
+See [`theme/palette.md`](theme/palette.md) for the shared palette.
+
+## Waybar layout
+
+The reactor bar is arranged as:
+
+```text
+LEFT                                      CENTER                         RIGHT
+01 02 03 04 05 | TIME | POWER | WIFI | BT | MIC | VPN | CPU TEMP | ☢ REACTOR ONLINE | GPU TEMP | VOLUME | BRIGHTNESS
+```
+
+The center reactor status is intentionally kept between CPU and GPU telemetry so it reads like a compact control-room dashboard.
+
+## Scripts
+
+### Install
 
 ```bash
-sudo pacman -S rofi
+bash install.sh
 ```
 
-### 2. Create the Rofi theme directory
+### Update
+
+Pull the latest dotfiles and relink them:
 
 ```bash
-mkdir -p ~/.config/rofi
+bash scripts/update.sh
 ```
 
-Create the theme:
+### Uninstall
 
-```bash
-nano ~/.config/rofi/nuclear.rasi
-```
-
-Use the following:
-
-```rasi
-configuration {
-    modi: "drun,run,window";
-    show-icons: true;
-    display-drun: "APPS";
-    display-run: "RUN";
-    display-window: "WINDOWS";
-}
-
-* {
-    bg: #030a03;
-    bg-alt: #071407;
-    green: #39ff14;
-    green-dark: #123d0d;
-    text: #b6ff9c;
-    border: #39ff14;
-    font: "JetBrainsMono Nerd Font 12";
-}
-
-window {
-    width: 700px;
-    border: 2px;
-    border-color: @border;
-    border-radius: 10px;
-    background-color: @bg;
-    padding: 25px;
-}
-
-mainbox {
-    children: [ inputbar, listview ];
-    spacing: 15px;
-}
-
-inputbar {
-    children: [ prompt, entry ];
-    background-color: @bg-alt;
-    border: 1px;
-    border-color: @border;
-    border-radius: 6px;
-    padding: 10px;
-}
-
-prompt {
-    text-color: @green;
-    padding: 0 10px 0 0;
-}
-
-entry {
-    text-color: @text;
-    placeholder: "SEARCH...";
-    placeholder-color: #238f16;
-}
-
-listview {
-    columns: 1;
-    lines: 8;
-    spacing: 5px;
-}
-
-element {
-    padding: 10px;
-    border-radius: 5px;
-}
-
-element normal {
-    text-color: @text;
-}
-
-element selected {
-    background-color: @green;
-    text-color: @bg;
-}
-
-element-text {
-    text-color: inherit;
-}
-
-element-icon {
-    size: 28px;
-}
-```
-
-### 3. Launch the nuclear Rofi theme
-
-```bash
-rofi -show drun -theme ~/.config/rofi/nuclear.rasi
-```
-
-### 4. Add it to Hyprland
-
-Add a keybind to `~/.config/hypr/hyprland.conf`:
-
-```ini
-bind = SUPER, R, exec, rofi -show drun -theme ~/.config/rofi/nuclear.rasi
-```
-
-Then reload Hyprland:
-
-```bash
-hyprctl reload
-```
-
-### Theme design
-
-The Rofi theme follows the same visual language as the Waybar:
-
-- ☢️ `#39ff14` nuclear-green accent
-- 🖥️ `#030a03` near-black background
-- 🟢 `#071407` dark green panels
-- ✨ High-contrast green-on-black appearance
-- 🔲 Thin green borders and rounded panels
-- 🔤 JetBrainsMono Nerd Font for matching typography
-
-This keeps the launcher and Waybar visually consistent as one **Nuclear Reactor Hyprland theme**.
-
-## Uninstall
+Remove only the symlinks created by this repository:
 
 ```bash
 bash uninstall.sh
 ```
+
+Backups created during installation are left untouched.
+
+## Portability
+
+The temperature scripts do not hard-code a particular CPU or GPU. They use `sensors` and `nvidia-smi`, with a sensor fallback for systems without NVIDIA tooling.
+
+The dotfiles are designed for Arch-based Wayland systems, especially CachyOS + Hyprland, but most individual components can be used independently.
+
+## Notes
+
+- The Hyprland config is a clean starting point; adapt monitor and machine-specific rules to your hardware.
+- The Rofi configuration lives independently under `dotfiles/rofi/` so it can be installed or edited without touching Waybar.
+- The Waybar scripts are intentionally portable and use standard system tools where possible.
 
 ## GitHub
 
