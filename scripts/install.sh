@@ -3,11 +3,8 @@ set -euo pipefail
 
 ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 
-if [[ ! -d "$HOME/.config" ]]; then
-    mkdir -p "$HOME/.config"
-fi
-
-"$ROOT_DIR/scripts/link-dotfiles.sh"
+mkdir -p "$HOME/.config"
+bash "$ROOT_DIR/scripts/link-dotfiles.sh"
 
 chmod +x "$ROOT_DIR"/dotfiles/waybar/scripts/*.sh
 chmod +x "$ROOT_DIR"/dotfiles/waybar/*.sh
