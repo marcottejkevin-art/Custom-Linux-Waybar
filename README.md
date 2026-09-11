@@ -87,6 +87,147 @@ README.md
 waybar-preview.webp
 ```
 
+## Nuclear Rofi Theme
+
+The Waybar theme is designed to pair with a matching **nuclear-green Rofi launcher**: black/dark background, radioactive green text, thin green borders, and a subtle green glow.
+
+### 1. Install Rofi
+
+On CachyOS / Arch:
+
+```bash
+sudo pacman -S rofi
+```
+
+### 2. Create the Rofi theme directory
+
+```bash
+mkdir -p ~/.config/rofi
+```
+
+Create the theme:
+
+```bash
+nano ~/.config/rofi/nuclear.rasi
+```
+
+Use the following:
+
+```rasi
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    display-drun: "APPS";
+    display-run: "RUN";
+    display-window: "WINDOWS";
+}
+
+* {
+    bg: #030a03;
+    bg-alt: #071407;
+    green: #39ff14;
+    green-dark: #123d0d;
+    text: #b6ff9c;
+    border: #39ff14;
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+window {
+    width: 700px;
+    border: 2px;
+    border-color: @border;
+    border-radius: 10px;
+    background-color: @bg;
+    padding: 25px;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    spacing: 15px;
+}
+
+inputbar {
+    children: [ prompt, entry ];
+    background-color: @bg-alt;
+    border: 1px;
+    border-color: @border;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+prompt {
+    text-color: @green;
+    padding: 0 10px 0 0;
+}
+
+entry {
+    text-color: @text;
+    placeholder: "SEARCH...";
+    placeholder-color: #238f16;
+}
+
+listview {
+    columns: 1;
+    lines: 8;
+    spacing: 5px;
+}
+
+element {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+element normal {
+    text-color: @text;
+}
+
+element selected {
+    background-color: @green;
+    text-color: @bg;
+}
+
+element-text {
+    text-color: inherit;
+}
+
+element-icon {
+    size: 28px;
+}
+```
+
+### 3. Launch the nuclear Rofi theme
+
+```bash
+rofi -show drun -theme ~/.config/rofi/nuclear.rasi
+```
+
+### 4. Add it to Hyprland
+
+Add a keybind to `~/.config/hypr/hyprland.conf`:
+
+```ini
+bind = SUPER, R, exec, rofi -show drun -theme ~/.config/rofi/nuclear.rasi
+```
+
+Then reload Hyprland:
+
+```bash
+hyprctl reload
+```
+
+### Theme design
+
+The Rofi theme follows the same visual language as the Waybar:
+
+- ☢️ `#39ff14` nuclear-green accent
+- 🖥️ `#030a03` near-black background
+- 🟢 `#071407` dark green panels
+- ✨ High-contrast green-on-black appearance
+- 🔲 Thin green borders and rounded panels
+- 🔤 JetBrainsMono Nerd Font for matching typography
+
+This keeps the launcher and Waybar visually consistent as one **Nuclear Reactor Hyprland theme**.
+
 ## Uninstall
 
 ```bash
