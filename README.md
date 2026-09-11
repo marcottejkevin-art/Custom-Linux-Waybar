@@ -23,7 +23,6 @@ The organization is inspired by the component-based layout of [`pewdiepie-archda
 - 📊 Fastfetch system information
 - 📈 btop with a matching nuclear theme
 - ⏻ wlogout power menu
-- 📦 Arch package manifests
 - 🔗 Symlink-based installation with automatic backups
 - 🔄 Update and uninstall helpers
 
@@ -42,20 +41,6 @@ After installation, restart Waybar:
 ```bash
 pkill waybar 2>/dev/null || true
 waybar >/tmp/waybar.log 2>&1 &
-```
-
-For a complete Arch/CachyOS setup, review `packages/pacman.txt` first. Install optional packages from `packages/aur.txt` separately if you want them.
-
-## Recommended packages
-
-```bash
-sudo pacman -S --needed - < packages/pacman.txt
-```
-
-Optional VPN support:
-
-```bash
-sudo pacman -S tailscale
 ```
 
 ## Dotfiles
@@ -97,12 +82,8 @@ dotfiles/
 
 ```text
 Custom-Linux-Waybar/
-├── dotfiles/             # Actual application configurations
-├── packages/             # Arch package manifests
+├── dotfiles/             # Application configurations
 ├── scripts/              # Install / update / uninstall helpers
-├── theme/                # Shared visual design documentation
-├── screenshots/          # Future showcase assets
-├── wallpapers/           # Future wallpaper collection
 ├── install.sh            # Main installer entry point
 ├── uninstall.sh          # Main uninstall entry point
 ├── README.md
@@ -120,8 +101,6 @@ The visual language is intentionally consistent across the desktop:
 - `#FFF27A` — warning state
 - `#FF3030` — critical state
 - JetBrainsMono Nerd Font — primary typography
-
-See [`theme/palette.md`](theme/palette.md) for the shared palette.
 
 ## Waybar layout
 
