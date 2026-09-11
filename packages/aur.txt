@@ -1,0 +1,3 @@
+# Optional AUR packages
+# chaotic-aur / AUR helpers can install these separately if desired.
+# tailscale
