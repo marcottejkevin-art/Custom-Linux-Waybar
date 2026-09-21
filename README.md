@@ -8,7 +8,6 @@ A complete **CachyOS / Arch Linux + Hyprland nuclear-reactor rice** built around
 
 The repository is organized as a real dotfiles collection: each application owns its configuration under `dotfiles/`, while the installer links everything into `~/.config` without hard-coding the repository location.
 
-The organization is inspired by the component-based layout of [`pewdiepie-archdaemon/dionysus`](https://github.com/pewdiepie-archdaemon/dionysus), while the configuration, scripts, palette, and reactor theme here are its own implementation.
 
 ## Features
 
